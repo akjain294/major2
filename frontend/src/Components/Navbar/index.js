@@ -17,8 +17,8 @@ function AppNavbar() {
       <Container>
         <Navbar.Brand href="/">NutriBuddy</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+        <Navbar.Collapse id="basic-navbar-nav" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
+          <Nav className="me-auto" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
             <LinkContainer to="/Home">
               <Nav.Link>Meals</Nav.Link>
             </LinkContainer>
@@ -35,10 +35,17 @@ function AppNavbar() {
             <LinkContainer to="/contactus">
               <Nav.Link>Conatct Us</Nav.Link>
             </LinkContainer>
-            <Nav.Link href="#calender">Calender</Nav.Link>
+            <LinkContainer to="/mealPlanning">
+              <Nav.Link>Plans</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/calender">
+              <Nav.Link>Calender</Nav.Link>
+            </LinkContainer>
+            </Nav>
+          <Nav style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
             {user && <p>{user.user.name}</p>}
             {user && <button onClick={handleLogoutClick}>Logout</button>}
-          </Nav>
+            </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

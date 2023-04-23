@@ -6,10 +6,10 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const baseRoutes = require("./routes/baseRoutes");
 const userAuthMiddleware = require("./middleware/userAuthMiddleware");
+const eventRoute = require("./routes/eventRoute")
 
 // express app
 const app = express();
-
 app.use(express.json());
 
 // middleware
@@ -39,6 +39,9 @@ app.use("/api/base", userAuthMiddleware, baseRoutes);
 // user routes
 app.use("/api/user", userRoutes);
 
+//event routes
+app.use("/api/events", eventRoute)
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -49,3 +52,6 @@ mongoose
   .catch((error) => {
     console.log("Error -> ", error);
   });
+
+
+  
