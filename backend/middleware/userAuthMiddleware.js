@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 const userAuthMiddleware = async (req, res, next) => {
-  console.log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -11,8 +10,6 @@ const userAuthMiddleware = async (req, res, next) => {
   }
 
   const token = authorization.split(" ")[1];
-
-  console.log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 
   try {
     const { _id } = jwt.verify(token, process.env.SECRET);
