@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MealList from "./MealList";
-import { useParams } from "react-router-dom";
 
-function MealDataList() {
-  let { routeCalorie } = useParams();
+function Daily() {
   const [mealData, setMealData] = useState(null);
-  const [calories, setCalories] = useState(1000);
+  const [calories, setCalories] = useState(2000);
 
   function getMealData() {
     fetch(
@@ -19,12 +17,7 @@ function MealDataList() {
         console.log("error");
       });
   }
-  useEffect(() => {
-    if (routeCalorie !== undefined) {
-      setCalories(routeCalorie);
-      getMealData();
-    }
-  }, []);
+
   function handleChange(e) {
     setCalories(e.target.value);
   }
@@ -36,7 +29,6 @@ function MealDataList() {
           type="number"
           placeholder="Calories (e.g. 2000)"
           onChange={handleChange}
-          value = {calories}
         />
         <button onClick={getMealData}>Get Daily Meal Plan</button>
       </section>
@@ -45,4 +37,4 @@ function MealDataList() {
   );
 }
 
-export default MealDataList;
+export default Daily;

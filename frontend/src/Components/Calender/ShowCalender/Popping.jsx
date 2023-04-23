@@ -15,7 +15,7 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
    }
 
    const handleInfo = () => {
-    navigate("/rsjd");
+    navigate("/mealPlanning");
   }
    
 

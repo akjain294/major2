@@ -42,7 +42,7 @@ function App() {
                 element={!user ? <Signup /> : <Navigate to="/" />}
               />
               <Route exact path="/contactus" element={<Contact />} />
-              <Route exact path="/mealPlanning" element={<Meal />} />
+              <Route exact path="/mealPlanning/:routeCalorie?" element={<Meal />} />
               <Route exact path="/calender" element={<Calender />} />
               <Route path="/events/add" element={<AddEvents />} />
               <Route path="/event/:id/update" element={<UpdateEvent />} />
