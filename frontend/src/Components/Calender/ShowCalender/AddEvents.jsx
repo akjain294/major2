@@ -30,7 +30,7 @@ const AddEvents = ({ addEventApi, error }) => {
 
     }
     if (!error.start && !error.end && dbError !== false) {
-      setTimeout(navigate("/"))
+      setTimeout(navigate("/calender"))
     }
   }, [rerender])
   //using form-hook to register event data

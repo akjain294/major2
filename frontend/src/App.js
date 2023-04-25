@@ -18,12 +18,63 @@ import Calender from "./Components/Calender/ShowCalender";
 import AddEvents from "./Components/Calender/ShowCalender/AddEvents";
 import UpdateEvent from "./Components/Calender/ShowCalender/UpdateEvent";
 
+import Cart from "./Pages/Cart/Cart";
+import Amazon from "./Pages/Cart/Amazon";
+import { useState } from "react";
+
 function App() {
   const { user, ready } = useUserContext();
+  
+  const [show, setShow] = useState(true);
+	const [cart , setCart] = useState([]);
+	const [warning, setWarning] = useState(false);
+
+	const handleClick = (item)=>{
+		let isPresent = false;
+		cart.forEach((product)=>{
+			if (item.id === product.id)
+			isPresent = true;
+		})
+		if (isPresent){
+			setWarning(true);
+			setTimeout(()=>{
+				setWarning(false);
+			}, 2000);
+			return ;
+		}
+		setCart([...cart, item]);
+	}
+
+	const handleChange = (item, d) =>{
+		let ind = -1;
+		cart.forEach((data, index)=>{
+			if (data.id === item.id)
+				ind = index;
+		});
+		const tempArr = cart;
+		tempArr[ind].amount += d;
+		
+		if (tempArr[ind].amount === 0)
+			tempArr[ind].amount = 1;
+		setCart([...tempArr])
+	}
+  
 
   return (
+    
     <Router>
       <AppContext>
+
+      <React.Fragment>
+		<Navbar size={cart.length} setShow={setShow} />
+		{
+			show ? <Amazon handleClick={handleClick} /> : <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+		}
+		{
+			warning && <div className='warning'>Item is already added to your cart</div>
+		}
+	</React.Fragment>
+
         {ready ? (
           <>
             <Navbar />
@@ -42,7 +93,8 @@ function App() {
                 element={!user ? <Signup /> : <Navigate to="/" />}
               />
               <Route exact path="/contactus" element={<Contact />} />
-              <Route exact path="/mealPlanning/:routeCalorie?" element={<Meal />} />
+              
+              <Route exact path="/mealPlanning/:routeCalories?" element={<Meal />} />
               <Route exact path="/calender" element={<Calender />} />
               <Route path="/events/add" element={<AddEvents />} />
               <Route path="/event/:id/update" element={<UpdateEvent />} />

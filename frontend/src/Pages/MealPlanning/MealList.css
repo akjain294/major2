@@ -38,8 +38,9 @@ main {
 }
 
 .meals {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2rem;
+    display:contents;
+    padding: 1rem;
+    font-size: medium;
+    block-size: auto;
     justify-items: center;
 }

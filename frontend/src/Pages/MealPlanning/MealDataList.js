@@ -3,13 +3,13 @@ import MealList from "./MealList";
 import { useParams } from "react-router-dom";
 
 function MealDataList() {
-  let { routeCalorie } = useParams();
+  let { routeCalories } = useParams();
   const [mealData, setMealData] = useState(null);
   const [calories, setCalories] = useState(1000);
 
   function getMealData() {
     fetch(
-      `https://api.spoonacular.com/mealplanner/generate?apiKey=9cba1b9be1664dc4ba703a4077b2f849&timeFrame=day&targetCalories=${calories}`
+      `https://api.spoonacular.com/mealplanner/generate?apiKey=dac93ee70a0e470090ac62a1c5ffa8dd&timeFrame=day&targetCalories=${calories}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -20,8 +20,8 @@ function MealDataList() {
       });
   }
   useEffect(() => {
-    if (routeCalorie !== undefined) {
-      setCalories(routeCalorie);
+    if (routeCalories !== undefined) {
+      setCalories(routeCalories);
       getMealData();
     }
   }, []);
