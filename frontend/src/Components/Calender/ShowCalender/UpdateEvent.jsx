@@ -32,7 +32,7 @@ const UpdateEvent = ({ updateEventApi, event, error }) => {
 
     }
     if (!error.start && !error.end && dbError !== false) {
-      setTimeout(navigate("/"))
+      setTimeout(navigate("/calender"))
     }
   }, [rerender])
   //using form-hook to register event data
@@ -53,12 +53,13 @@ const UpdateEvent = ({ updateEventApi, event, error }) => {
         console.log(res);
         setRerender(!rerender);
         if (res === "response was successful") {
-          navigate("/")
+          navigate("/calender")
         }
       })
 
   }
 
+  console.log("Errors " , errors)
 
   return (
     //this form is in bootstrab
@@ -66,9 +67,9 @@ const UpdateEvent = ({ updateEventApi, event, error }) => {
       <div className="mb-4">
         <label htmlFor="title" className="form-label">Event Title</label>
         <input {...register("title")} type="text" placeholder="title" className="form-control" id="title" aria-describedby="title" />
-        <p className={`error text-warning position-absolute ${errors.title ? "active" : ""}`}>
-          {errors.title ? <i className="bi bi-info-circle me-2">hey</i> : ""}{errors.title.message}
-        </p>
+        {/* <p className={`error text-warning position-absolute ${errors.title ? "active" : ""}`}> */}
+          {/* {errors.title ? <i className="bi bi-info-circle me-2">hey</i> : ""}{errors.title.message} */}
+        {/* </p> */}
       </div>
       <div className="mb-4" style={{ zIndex: "100" }}>
         <label htmlFor="start" className="form-label">Start Date</label>
@@ -92,8 +93,8 @@ const UpdateEvent = ({ updateEventApi, event, error }) => {
           )}
         />
         {/* error handling */}
-        <p className={`error text-warning position-absolute ${errors.start ? "active" : ""}`}>{errors.start ? <i className=" bi bi-info-circle me-2"></i> : ""}{errors.start.message}</p>
-        <p className={`error text-warning position-absolute ${dbError.start ? "" : "d-none"}`}>{dbError.start ? <i className=" bi bi-info-circle me-2"></i> : ""}{dbError.start}</p>
+        {/* <p className={`error text-warning position-absolute ${errors.start ? "active" : ""}`}>{errors.start ? <i className=" bi bi-info-circle me-2"></i> : ""}{errors.start.message}</p> */}
+        {/* <p className={`error text-warning position-absolute ${dbError.start ? "" : "d-none"}`}>{dbError.start ? <i className=" bi bi-info-circle me-2"></i> : ""}{dbError.start}</p> */}
       </div>
       <div className="mb-4" style={{ zIndex: "100" }}>
         <label htmlFor="end" className="form-label">End Date</label>
@@ -116,8 +117,8 @@ const UpdateEvent = ({ updateEventApi, event, error }) => {
           )}
         />
         {/* error handling */}
-        <p className={`error text-warning position-absolute ${errors.end ? "active" : ""}`}>{errors.end ? <i className=" bi bi-info-circle me-2"></i> : ""}{errors.end.message}</p>
-        <p className={`error text-warning position-absolute ${dbError.end ? "" : "d-none"}`}>{dbError.end ? <i className=" bi bi-info-circle me-2"></i> : ""}{dbError.end}</p>
+        {/* <p className={`error text-warning position-absolute ${errors.end ? "active" : ""}`}>{errors.end ? <i className=" bi bi-info-circle me-2"></i> : ""}{errors.end.message}</p> */}
+        {/* <p className={`error text-warning position-absolute ${dbError.end ? "" : "d-none"}`}>{dbError.end ? <i className=" bi bi-info-circle me-2"></i> : ""}{dbError.end}</p> */}
 
       </div>
       <div className="mb-4">

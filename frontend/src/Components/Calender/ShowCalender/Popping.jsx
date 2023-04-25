@@ -46,7 +46,7 @@ const Popping = ({open, handleClose, event, deleteEventApi, renderStatus, rerend
    if(id){
      return modal()
    }else{
-     return (() => <p>there is no modal to preview</p>)();
+     return (() => {})();
    }
    
   }
