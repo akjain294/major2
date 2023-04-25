@@ -17,15 +17,23 @@ export default function Meal({ meal }) {
   }, [meal.id]);
 
   return (
-    <article>
-      <h1>{meal.title}</h1>
-      <img src={imageUrl} alt="recipe" />
-      <ul className="instructions">
-        <li>Preparation time: {meal.readyInMinutes} minutes</li>
-        <li>Number of servings: {meal.servings}</li>
-      </ul>
+    <article className="meal-details">
+      <h1 className="meal-h">{meal.title}</h1>
+      <div className="meal-image">
+        <img src={imageUrl} alt="recipe" />
+      </div>
+      <div className="secondPart">
+      <div className="meal-info">
+        <ul className="meal-instructions">
+          <li>Preparation time: {meal.readyInMinutes} minutes</li>
+          <li>Number of servings: {meal.servings}</li>
+        </ul>
+      </div>
+      <a href={meal.sourceUrl} className="meal-link">
+        Go to Recipe
+      </a>
+      </div>
 
-      <a href={meal.sourceUrl}>Go to Recipe</a>
     </article>
   );
 }

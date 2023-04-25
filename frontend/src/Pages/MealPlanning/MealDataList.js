@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MealList from "./MealList";
 import { useParams } from "react-router-dom";
+import "./MealList.css";
 
 function MealDataList() {
   let { routeCalories } = useParams();
@@ -31,16 +32,23 @@ function MealDataList() {
 
   return (
     <div className="App">
-      <section className="controls">
-        <input
-          type="number"
-          placeholder="Calories (e.g. 2000)"
-          onChange={handleChange}
-          value = {calories}
-        />
-        <button onClick={getMealData}>Get Daily Meal Plan</button>
-      </section>
-      {mealData && <MealList mealData={mealData} />}
+      <div className="contain">
+        <section className="controls">
+          <div>
+            <input
+              type="number"
+              placeholder="Calories (e.g. 2000)"
+              onChange={handleChange}
+              value={calories}
+              className="mealInput"
+            />
+            <button className="mealBtn" onClick={getMealData}>
+              Get Daily Meal Plan
+            </button>
+          </div>
+        </section>
+      </div>
+      <div>{mealData && <MealList mealData={mealData} />}</div>
     </div>
   );
 }
